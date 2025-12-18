@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张婧雨 - 数据科学与大数据技术简历</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", "Microsoft YaHei", "PingFang SC", sans-serif;
+        }
+        body {
+            background: linear-gradient(180deg, #f5f8ff 0%, #eaf6ff 100%);
+            color: #2d3748;
+            line-height: 1.8;
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            scroll-behavior: smooth;
+        }
+        /* 头部区域 - 渐变+光影设计 */
+        header {
+            background: linear-gradient(135deg, #4299e1 0%, #38b2ac 100%);
+            color: white;
+            padding: 60px 0;
+            border-radius: 32px;
+            margin-bottom: 45px;
+            box-shadow: 0 15px 40px rgba(66, 153, 225, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: "";
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 240px;
+            height: 240px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -60px;
+            left: -60px;
+            width: 180px;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+        .header-container {
+            position: relative;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .name {
+            font-size: 45px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+        }
+        .tagline {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 18px;
+        }
+        .school-info {
+            font-size: 18px;
+            opacity: 0.85;
+            display: inline-block;
+            padding: 8px 24px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 36px;
+        }
+        /* 导航栏 - 悬浮交互 */
+        .nav {
+            margin: 40px 0 10px;
+            text-align: center;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 11px 24px;
+            margin: 0 10px;
+            border-radius: 28px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+        }
+        .nav a:hover {
+            background: rgba(255, 255, 255, 0.22);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+        /* 内容卡片 - 渐变边框+悬浮动画 */
+        .section {
+            background: white;
+            border-radius: 28px;
+            padding: 45px;
+            margin-bottom: 38px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid transparent;
+            background-clip: padding-box;
+        }
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 28px;
+            padding: 1px;
+            background: linear-gradient(135deg, #4299e1, #38b2ac);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .section:hover {
+            transform: translateY(-9px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.09);
+        }
+        .section:hover::before {
+            opacity: 1;
+        }
+        /* 标题样式 - 渐变下划线 */
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 32px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #f0f7ff;
+            position: relative;
+        }
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 90px;
+            height: 2px;
+            background: linear-gradient(90deg, #4299e1, #38b2ac);
+        }
+        /* 内容通用样式 */
+        .content {
+            font-size: 16px;
+            color: #4a5568;
+            line-height: 1.9;
+        }
+        /* 个人简介 - 图文布局 */
+         .intro-container {
+             display: flex;
+             gap: 40px;
+             align-items: center;
+             flex-wrap: wrap;
+         }
+         .intro-img {
+             flex: 0 0 280px;
+             height: 280px;
+             border-radius: 24px;
+             object-fit: cover;
+             box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+             transition: transform 0.3s ease;
+         }
+         .intro-img:hover {
+             transform: scale(1.03);
+         }
+         .intro-text {
+             flex: 1;
+             min-width: 300px;
+         }
+         .intro-tag {
+             display: inline-block;
+             padding: 6px 16px;
+             background: #e8f4f8;
+             color: #4299e1;
+             border-radius: 20px;
+             font-size: 14px;
+             margin-right: 8px;
+             margin-bottom: 12px;
+         }
+        /* 教育经历 - 时间轴布局 */
+        .edu-timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        .edu-timeline::before {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #4299e1, #38b2ac);
+        }
+        .edu-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .edu-item:last-child {
+            margin-bottom: 0;
+        }
+        .edu-item::before {
+            content: "";
+            position: absolute;
+            left: -36px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #4299e1;
+            z-index: 1;
+        }
+        .edu-period {
+            font-weight: 600;
+            color: #4299e1;
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+        .edu-school {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+        .edu-details {
+            color: #718096;
+            line-height: 1.8;
+        }
+        /* 实习经历 - 卡片式布局 */
+        .internship-card {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        .internship-card:last-child {
+            margin-bottom: 0;
+        }
+        .internship-card:hover {
+            transform: translateX(8px);
+            background: #f0f7ff;
+        }
+        .intern-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .intern-company {
+            font-size: 19px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        .intern-period {
+            font-size: 15px;
+            color: #4299e1;
+            font-weight: 500;
+        }
+        .intern-position {
+            font-size: 17px;
+            color: #38b2ac;
+             margin-bottom: 12px;
+             font-weight: 500;
+         }
+         .intern-tasks {
+             list-style: none;
+             padding-left: 0;
+         }
+         .intern-tasks li {
+             position: relative;
+             padding-left: 24px;
+             margin-bottom: 10px;
+         }
+         .intern-tasks li::before {
+             content: "•";
+             position: absolute;
+             left: 0;
+             top: 2px;
+             color: #4299e1;
+             font-size: 20px;
+         }
+         /* 获奖经历 - 网格布局 */
+         .award-grid {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+             gap: 25px;
+         }
+         .award-card {
+             background: #fafafa;
+             border-radius: 18px;
+             padding: 25px;
+             border-left: 4px solid #4299e1;
+             transition: all 0.3s ease;
+         }
+         .award-card:hover {
+             transform: translateY(-5px);
+             background: #f0f7ff;
+             box-shadow: 0 6px 16px rgba(66, 153, 225, 0.08);
+         }
+         .award-title {
+             font-size: 18px;
+             font-weight: 600;
+             color: #2d3748;
+             margin-bottom: 8px;
+         }
+         .award-date {
+             font-size: 14px;
+             color: #718096;
+             margin-bottom: 10px;
+         }
+         .award-desc {
+             font-size: 15px;
+             color: #4a5568;
+         }
+         /* 技能板块 - 分类网格 */
+         .skill-category {
+             margin-bottom: 35px;
+         }
+         .skill-category:last-child {
+             margin-bottom: 0;
+         }
+         .skill-cat-title {
+             font-size: 18px;
+             font-weight: 600;
+             color: #2d3748;
+             margin-bottom: 18px;
+             display: flex;
+             align-items: center;
+         }
+         .skill-cat-title::after {
+             content: "";
+             flex: 1;
+             height: 1px;
+             background: #e8f4f8;
+             margin-left: 15px;
+         }
+         .skill-tags {
+             display: flex;
+             flex-wrap: wrap;
+             gap: 12px;
+         }
+         .skill-tag {
+             padding: 8px 20px;
+             background: #e8f4f8;
+             border-radius: 24px;
+             color: #4299e1;
+             font-size: 15px;
+             transition: all 0.2s ease;
+         }
+         .skill-tag:hover {
+             background: #4299e1;
+             color: white;
+         }
+         /* 多媒体板块 - 分类布局 */
+         .media-grid {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+             gap: 30px;
+             margin-top: 20px;
+         }
+         .media-card {
+             background: #f8f9fa;
+             border-radius: 20px;
+             padding: 25px;
+             transition: all 0.3s ease;
+         }
+         .media-card:hover {
+             transform: translateY(-5px);
+             background: #f0f7ff;
+             box-shadow: 0 6px 16px rgba(66, 153, 225, 0.08);
+         }
+         .media-type {
+             font-size: 18px;
+             font-weight: 600;
+             color: #4299e1;
+             margin-bottom: 15px;
+             display: flex;
+             align-items: center;
+             gap: 10px;
+         }
+         .media-list {
+             list-style: none;
+             padding-left: 0;
+         }
+         .media-list li {
+             margin-bottom: 12px;
+             padding-left: 24px;
+             position: relative;
+         }
+         .media-list li::before {
+             content: "♪";
+             position: absolute;
+             left: 0;
+             top: 2px;
+             color: #38b2ac;
+             font-size: 18px;
+         }
+         .media-list li a {
+             color: #4a5568;
+             text-decoration: none;
+             transition: color 0.2s ease;
+         }
+         .media-list li a:hover {
+             color: #4299e1;
+             text-decoration: underline;
+         }
+         .video-container {
+             width: 100%;
+             border-radius: 16px;
+             overflow: hidden;
+             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+             margin-top: 15px;
+         }
+         .video-container video {
+             width: 100%;
+             height: auto;
+             display: block;
+         }
+         .audio-container {
+             width: 100%;
+             margin-top: 15px;
+             border-radius: 8px;
+             overflow: hidden;
+         }
+         /* 响应式适配 */
+         @media (max-width: 768px) {
+             body {
+                 padding: 30px 15px;
+             }
+             header {
+                 padding: 45px 0;
+                 border-radius: 24px;
+             }
+             .name {
+                 font-size: 36px;
+             }
+             .tagline, .school-info {
+                 font-size: 16px;
+             }
+             .nav a {
+                 padding: 10px 20px;
+                 margin: 0 5px 10px;
+                 font-size: 15px;
+             }
+             .section {
+                 padding: 35px 25px;
+                 border-radius: 24px;
+                 margin-bottom: 30px;
+             }
+             .section-title {
+                 font-size: 24px;
+                 margin-bottom: 25px;
+             }
+             .edu-timeline {
+                 padding-left: 30px;
+             }
+             .award-grid, .media-grid {
+                 grid-template-columns: 1fr;
+             }
+             .intro-container {
+                 gap: 20px;
+             }
+             .intro-img {
+                 flex: 0 0 100%;
+                 max-width: 300px;
+                 margin: 0 auto;
+             }
+         }
+         @media (max-width: 480px) {
+             .name {
+                 font-size: 32px;
+             }
+             .section {
+                 padding: 30px 20px;
+             }
+             .intern-header {
+                 flex-direction: column;
+                 align-items: flex-start;
+                 gap: 8px;
+             }
+         }
+     </style>
+ </head>
+ <body>
+    <!-- 头部区域 -->
+     <header>
+         <div class="header-container">
+             <h1 class="name">张婧雨</h1>
+             <p class="tagline">数据科学与大数据技术 | 大连海洋大学 大二在读</p >
+             <p class="school-info">专注数据处理与分析 · 热爱技术创新</p >
+             
+             <div class="nav">
+                <a href="#个人简介">个人简介</a >
+                 <a href="#教育经历">教育经历</a >
+                 <a href="#实习经历">实习经历</a >
+                 <a href="#获奖经历">获奖经历</a >
+                 <a href="#专业技能">专业技能</a >
+                 <a href="#自我评价">自我评价</a >
+             </div>
+         </div>
+     </header>
+    <!-- 背景音乐板块（适配简历整体风格，无图标） -->
+<section class="section" id="背景音乐">
+    <h2 class="section-title">背景音乐</h2>
+    <div class="content">
+        <div style="background: #f8f9fa; border-radius: 20px; padding: 30px; transition: all 0.3s ease;">
+            <p style="font-size: 17px; color: #2d3748; margin-bottom: 20px;"></p >
+            <audio controls preload="auto" style="width: 100%; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <source src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_1MB_MP3.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+            <p style="font-size: 14px; color: #718096; margin-top: 15px;">音频格式：MP3 | 文件大小：1MB | 播放时长：约30秒</p >
+        </div>
+    </div>
+</section>
+     <!-- 个人简介 -->
+     <section class="section" id="个人简介">
+         <h2 class="section-title">个人简介</h2>
+         <div class="content">
+             <div class="intro-container">
+                 <img src="CD.jpg" 
+                     alt="张婧雨个人照片" 
+                     class="intro-img"
+                     loading="lazy">
+                 <div class="intro-text">
+                     <span class="intro-tag">摩羯座</span>
+                     <span class="intro-tag">现居大连</span>
+                     <span class="intro-tag">唱吧新声1级</span>
+                     <p>张婧雨，大连海洋大学数据科学与大数据技术专业大二学生，兼具扎实的数据分析能力与丰富的艺术爱好。</p >
+                     <p>学业上，GPA 3.7/4.0，专业排名前15%，熟练掌握Python数据分析工具栈与SQL数据库操作，拥有数据分析师实习经历。</p >
+                     <p>性格开朗乐观，秉持“开心就好”的生活态度，注重理性思维与艺术感知的平衡发展，擅长在数据中挖掘规律，在音乐中传递情感。</p >
+                 </div>
+             </div>
+         </div>
+     </section>
+     <!-- 教育经历 -->
+     <section class="section" id="教育经历">
+         <h2 class="section-title">教育经历</h2>
+         <div class="content">
+             <div class="edu-timeline">
+                 <div class="edu-item">
+                    <div class="edu-period">2012年9月 - 2018年6月</div>
+                     <div class="edu-school">龙王小学 | 小学</div>
+                     <div class="edu-details">
+                         连续六年获评"三好学生"，担任校少先队大队长，参与校园计算机兴趣班，初步接触Scratch编程，获市级小学生数学竞赛二等奖
+                     </div>
+                 </div>
+                  <div class="edu-item">
+                    <div class="edu-period">2018年9月 - 2021年6月</div>
+                     <div class="edu-school">大连市109中学 | 初中</div>
+                     <div class="edu-details">
+                        担任班级学习委员，数学、物理学科成绩稳居年级前20%，获"校级学习标兵""优秀班干部"等称号，参与校园科技节编程兴趣小组
+                     </div>
+                 </div>
+                 <div class="edu-item">
+                    <div class="edu-period">2021年9月 - 2024年6月</div>
+                     <div class="edu-school">大连市108中学 | 高中</div>
+                     <div class="edu-details">
+                         重点关注理科方向，数学、计算机学科成绩优异，多次参与校级学科竞赛，获"优秀毕业生"称号
+                     </div>
+                 </div>
+                 <div class="edu-item">
+                     <div class="edu-period">2024年9月 - 至今</div>
+                     <div class="edu-school">大连海洋大学 | 数据科学与大数据技术专业 | 本科在读</div>
+                     <div class="edu-details">
+                         核心课程：Python程序设计、数据结构与算法、数据库原理与应用、统计学、机器学习基础、大数据导论、Hadoop基础、数据可视化<br>
+                    学业成果：GPA 3.7/4.0，专业排名前50%，通过大学英语四级（CET-4）
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+     <!-- 实习经历 -->
+     <section class="section" id="实习经历">
+         <h2 class="section-title">实习经历</h2>
+         <div class="content">
+             <div class="internship-card">
+                 <div class="intern-header">
+                     <div class="intern-company">大连某信息技术有限公司</div>
+                     <div class="intern-period">2024年7月 - 2024年9月</div>
+                 </div>
+                 <div class="intern-position">数据分析师实习生</div>
+                 <ul class="intern-tasks">
+                     <li>参与企业用户行为数据分析项目，使用Python（Pandas、NumPy）清洗和预处理20万+条用户行为数据，剔除异常值和缺失值，数据准确率提升至98%以上</li>
+                     <li>运用Matplotlib、Seaborn制作用户活跃度、消费偏好等可视化图表12份，为运营决策提供数据支撑</li>
+                     <li>协助搭建简易数据监控看板，通过SQL编写多表关联查询语句，实现核心指标的实时查询与更新</li>
+                     <li>参与撰写数据分析报告3份，提出2条用户留存优化建议，被项目组采纳并落地实施</li>
+                 </ul>
+             </div>
+             <div class="internship-card">
+                 <div class="intern-header">
+                     <div class="intern-company">大连海洋大学数据科学实验室</div>
+                     <div class="intern-period">2024年11月 - 2025年6月</div>
+                 </div>
+                 <div class="intern-position">科研助理实习生</div>
+                 <ul class="intern-tasks">
+                     <li>参与"海洋渔业数据统计分析"校级科研项目，负责收集整理2018-2022年大连周边海域渔业捕捞数据</li>
+                     <li>使用Excel和Python进行数据分类、汇总与初步分析，挖掘渔业产量变化趋势，形成数据摘要报告</li>
+                     <li>协助导师维护实验室数据管理系统，优化数据录入流程，提高数据整理效率30%</li>
+                     <li>参与项目阶段性汇报材料撰写，负责数据可视化部分的设计与制作</li>
+                 </ul>
+             </div>
+         </div>
+     </section>
+     <!-- 获奖经历 -->
+     <section class="section" id="获奖经历">
+         <h2 class="section-title">获奖经历</h2>
+         <div class="content">
+             <div class="award-grid">
+                 <div class="award-card">
+                     <div class="award-title">全国大学生数学建模竞赛 省级二等奖</div>
+                     <div class="award-date">2025年5月</div>
+                     <div class="award-desc">作为团队数据处理负责人，运用统计学方法和Python工具对赛事题目数据进行建模分析，完成模型构建与结果验证，最终获省级二等奖。</div>
+                 </div>
+                 <div class="award-card">
+                     <div class="award-title">大连海洋大学 "校级优秀学生奖学金"</div>
+                     <div class="award-date">2025年12月</div>
+                     <div class="award-desc">基于2022-2023学年学业成绩、科研实践表现及综合素质测评，获评校级优秀学生奖学金。</div>
+                 </div>
+                 <div class="award-card">
+                     <div class="award-title">大连海洋大学 "大数据技术应用竞赛" 校级一等奖</div>
+                     <div class="award-date">2024年10月</div>
+                     <div class="award-desc">独立完成"校园消费数据可视化分析"项目，使用Pandas处理数据、Flask搭建简易展示平台，获校级一等奖。</div>
+                 </div>
+                 <div class="award-card">
+                     <div class="award-title">大连海洋大学 "三好学生"</div>
+                     <div class="award-date">2025年9月</div>
+                     <div class="award-desc">综合学业成绩、社会实践、志愿服务等表现，被评为校级"三好学生"。</div>
+                 </div>
+             </div>
+         </div>
+     </section>
+     <!-- 专业技能 -->
+     <section class="section" id="专业技能">
+         <h2 class="section-title">专业技能</h2>
+         <div class="content">
+             <div class="skill-category">
+                 <h3 class="skill-cat-title">编程语言与工具</h3>
+                 <div class="skill-tags">
+                     <span class="skill-tag">Python 熟练</span>
+                     <span class="skill-tag">SQL 熟练</span>
+                     <span class="skill-tag">Pandas 熟练</span>
+                     <span class="skill-tag">NumPy 熟练</span>
+                     <span class="skill-tag">Matplotlib 熟练</span>
+                     <span class="skill-tag">Seaborn 熟练</span>
+                     <span class="skill-tag">Excel 精通</span>
+                     <span class="skill-tag">Hadoop 基础</span>
+                    <span class="skill-tag">Spark 基础</span>
+                 </div>
+             </div>
+             <div class="skill-category">
+                 <h3 class="skill-cat-title">专业知识</h3>
+                 <div class="skill-tags">
+                     <span class="skill-tag">数据结构与算法</span>
+                     <span class="skill-tag">统计学基础</span>
+                     <span class="skill-tag">机器学习基础</span>
+                     <span class="skill-tag">数据库原理</span>
+                     <span class="skill-tag">数据清洗与预处理</span>
+                     <span class="skill-tag">数据可视化</span>
+                     <span class="skill-tag">大数据框架基础</span>
+                 </div>
+             </div>
+             <div class="skill-category">
+                 <h3 class="skill-cat-title">综合能力</h3>
+                 <div class="skill-tags">
+                     <span class="skill-tag">数据分析报告撰写</span>
+                     <span class="skill-tag">项目团队协作</span>
+                     <span class="skill-tag">逻辑思维能力</span>
+                     <span class="skill-tag">问题解决能力</span>
+                     <span class="skill-tag">英语六级（读写流利）</span>
+                 </div>
+             </div>
+         </div>
+     </section>
+     <!-- 自我评价 -->
+     <section class="section" id="自我评价">
+         <h2 class="section-title">自我评价</h2>
+         <div class="content">
+             <p>作为大连海洋大学数据科学与大数据技术专业的大二学生，我始终保持对数据领域的浓厚兴趣和求知欲，注重理论与实践相结合。</p >
+             <p>通过一年多的专业学习和两段实习经历，我已熟练掌握Python数据分析工具栈和SQL数据库操作，具备独立完成数据清洗、分析、可视化的完整流程能力。在实习和竞赛中，培养了良好的团队协作意识、逻辑思维能力和问题解决能力，能够快速适应工作节奏并高效完成任务。</p >
+             <p>我性格沉稳细致，对数据敏感，善于从数据中挖掘价值。未来希望继续深耕数据分析、机器学习等方向，不断提升专业技能，致力于成为一名兼具技术能力和业务思维的数据领域人才。</p >
+         </div>
+     </section>
+ </body>
+ </html>
+                    
